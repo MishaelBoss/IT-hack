@@ -7,6 +7,7 @@ from django.conf import settings
 from django.http import HttpResponse
 from datetime import date
 
+
 def is_email(data):
     try:
         validate_email(data)
@@ -15,11 +16,13 @@ def is_email(data):
     else:
         return True
 
+
 def index(request):
     if not request.user.is_authenticated:
         return redirect('/login')
     _login = request.user.username
     return render(request, 'index.html')
+
 
 def register(request):
     if request.method == 'POST':
@@ -43,9 +46,11 @@ def register(request):
     else:
         return render(request, 'register.html')
     
+
 def logout_page(request):
     logout(request)
     return redirect('/login')
+
 
 def login_page(request):
     if request.method == 'POST':
@@ -70,11 +75,13 @@ def login_page(request):
     else:
         return render(request, 'login.html')
 
+
 def profile(request):
     if not request.user.is_authenticated:
         return redirect('/login')
     _login = request.user.username
     return render(request, 'profile.html')
+
 
 def profile_edit(request):
     if not request.user.is_authenticated:
@@ -104,3 +111,27 @@ def profile_edit(request):
             'user': user
         }
         return render(request, 'profile_edit.html', context=context)
+    
+
+def add_place(request):
+    if not request.user.is_authenticated:
+        return redirect('/login')
+    _login = request.user.username
+    user = User.objects.filter(username=_login).first()
+    if not user.is_staff:
+        return redirect('/login')
+    if request.POST:
+        try:
+            name = request.POST['name']
+            description = request.POST['description']
+            places = int(request.POST['places'])
+            image = request.FILES['image']
+
+            place_obj = Place(author=_login, name=name,description=description, image=image, places=places)
+            place_obj.save()
+            return redirect('/')
+        except Exception as ex:
+            print(ex)
+            return redirect('/add_place')
+    else:
+        return render(request, 'add_place.html')

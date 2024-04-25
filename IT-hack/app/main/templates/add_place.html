@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Сделать бронь мест</title>
+    </head>
+    <body>
+        <form action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="block-create-event" style="animation: 1s show ease;">
+                <h1>Добавить</h1>
+                <div class="content-create-event">
+                    <input type="file" id="fileUpload" name="image" accept="image/*"/>
+                    <input type="text" name="name" placeholder="Название">
+                    <input type="number" style="margin-left: 20px;" placeholder="Кол мест" name="places" min="1">
+                    <textarea name="description" placeholder="Описание"></textarea>
+                </div>
+                <button>
+                    Добавить
+                </button>
+            </div>
+        </form>
+    </body>
+</html>
