@@ -118,8 +118,8 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 # EMAIL_HOST_USER = 'placesKvant2024@mail.ru'
 # EMAIL_HOST_PASSWORD = 'cNQF0jHYvpsaGt6iTTdm'
 
-EMAIL_HOST = 'widgets.mail.ru'
+EMAIL_HOST = 'smtp.mail.ru'
 EMAIL_HOST_USER = 'place.kvant@mail.ru'
-EMAIL_HOST_PASSWORD = '-RYuTY5lr1ei'
+EMAIL_HOST_PASSWORD = 'ek2FABSVajSJaXNkgLkF'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
