@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Главная</title>
+    </head>
+    <body>
+        <script src="/static/js/redirect.js"></script>
+        <h1>Логин: {{user.username }}</h1>
+        <h1>Имя: {{user.first_name}}</h1>
+        <h1>Фамилия: {{user.last_name}}</h1>
+        <h1>Почта: {{user.email}}</h1>
+        <button onclick="redirect('/logout')">
+            Выйти
+        </button>
+        <button onclick="redirect('/profile_edit')">
+            Редактировать данные
+        </button>
+    </body>
+</html>

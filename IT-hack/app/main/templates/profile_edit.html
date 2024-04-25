@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Редактировать данные</title>
+    </head>
+    <body>
+        <script src="{% static 'js/redirect.js' %}"></script>
+        <form class="form-reg" action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <!-- <div class="input">
+              <div class="text">
+                <label>Логин</label>
+              </div>
+              <input type="text" placeholder="Логин" name="login">
+            </div> -->
+
+            <div class="input">
+                <div class="text">
+                  <label>Имя</label>
+                </div>
+                <input type="text" placeholder="{{user.first_name}}" name="first_name">
+            </div>
+
+            <div class="input">
+                <div class="text">
+                  <label>Фамилия</label>
+                </div>
+                <input type="text" placeholder="{{user.last_name}}" name="last_name">
+            </div>
+
+            <div class="input">
+                <div class="text">
+                  <label>Email</label>
+                </div>
+                <input type="email" placeholder="{{user.email}}" name="email">
+            </div>
+
+            <div class="input">
+              <div class="text">
+                <label>Старый пароль</label>
+              </div>
+              <input type="password" name="old_password" placeholder="Старый Пароль" class="pssword"> 
+            </div>
+
+            <div class="input">
+                <div class="text">
+                  <label>Новый пароль</label>
+                </div>
+                <input type="password" name="new_password" placeholder="Новый Пароль" class="pssword"> 
+              </div>
+          
+            <div class="checkPassword">
+                <input style="width: 2rem;" type="checkbox" id="shwpsswrd"><p class="text-Korean">Посмотреть пароль</p>
+            </div>
+          
+            <button style="height: 10%;">
+                Изменить данные
+            </button>
+        </form>
+        <script src="{% static 'js/password.js' %}"></script>
+    </body>
+</html>
