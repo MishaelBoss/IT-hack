@@ -2,10 +2,15 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.core.validators import validate_email
-from .models import *
+from django.core.mail import send_mail
 from django.conf import settings
 from django.http import HttpResponse
+from threading import Thread
 from datetime import date
+from .models import *
+import os
+
+email_server = settings.EMAIL_HOST_USER
 
 
 def is_email(data):
@@ -15,6 +20,10 @@ def is_email(data):
         return False
     else:
         return True
+    
+
+def SMS_email(subject, text, emails):
+    send_mail(subject, text, email_server, emails, fail_silently=False)
 
 
 def index(request):
@@ -39,6 +48,9 @@ def register(request):
             user = authenticate(request, username=_login, password=password)
 
             login(request, user)
+
+            thread = Thread(target=send_mail,args=("Регистрация", f"Здравствуйте, {last_name} {first_name}, Вы успешно зарегистрировались на PlaceKvant!", email_server, [email]))
+            thread.start()
             return redirect('/login')
         except Exception as ex:
             print(ex)
