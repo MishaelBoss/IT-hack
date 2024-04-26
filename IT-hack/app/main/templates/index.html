@@ -1,13 +1,54 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="ru">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
         <title>Главная</title>
     </head>
     <body>
         <h1>Test</h1>
+        <div class="serch">
+            <form action="" method="get"><input type="text" name="query" placeholder="Введите запрос" value="{{query}}"><button><img src="/static/images/button-serch.png"></button></form><br>
+        </div>
+
         <hr>
-        <h1>Брони</h1>
+        <div class="content-base">
+            {% if places %}
+            {% for place, p, delta, delta_1 in places %}
+    
+            <div class="card">
+              <div class="card__content">
+                <img
+                  class="card__image"
+                  src="/media/{{place.image}}"
+                  alt=""
+                />
+                <h2 class="card__title">{{ place.name }}</h2>
+                <p class="card__description">{% if delta_1 > 0 %} до начала осталось {{ delta_1 }} дней {%else%} мероприятие началось {%endif%}</p>
+                <div style="display: flex;width: 100%;">
+                    {% if not p %}
+                    <button onclick="redirect('/participate?event_id={{event.id}}')" class="btn-base" >
+                        Участвовать
+                    </button>
+                    {% else %}
+                    {% if delta_1 > 1 %}
+                    <button onclick="redirect('/unparticipate?event_id={{event.id}}')" class="btn-base">
+                        Отказаться от участия
+                    </button>
+                    {% endif %}
+                    {% endif %}
+                    <button onclick="redirect('/view_event?event_id={{event.id}}')" class="btn-base">
+                        Подробнее
+                    </button>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+            {% else %}
+                <h1>Пусто</h1>
+            {% endif %}
+        </div>
     </body>
 </html>

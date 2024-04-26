@@ -30,7 +30,35 @@ def index(request):
     if not request.user.is_authenticated:
         return redirect('/login')
     _login = request.user.username
-    return render(request, 'index.html')
+    query = str(request.GET.get('query', ''))
+    if query is None:
+        all_places = list(Place.objects.all().order_by('-id').all())
+    else:
+        all_places = []
+        for i in list(Place.objects.all().order_by('-id')):
+            if query.lower() in i.name.lower() or i.name.lower() in query.lower():
+                all_places.append(i)
+    places = []
+    places.append(i)
+    i_participate = []
+    delta_s = []
+    delta_ss = []
+    for place in places:
+        if PlaceMember.objects.filter(user=_login, place_id=place.id).first() is None:
+            i_participate.append(False)
+        else:
+            i_participate.append(True)
+
+        delta_s.append((place.to_date-date.today()).days)
+        delta_ss.append((place.from_date-date.today()).days)
+
+    if query is None or query == 'None':
+        query  = ''
+    context = {
+        'places': list(zip(places, i_participate, delta_s, delta_ss)),
+        'query': query
+    }
+    return render(request, 'index.html', context=context)
 
 
 def register(request):
@@ -136,10 +164,11 @@ def add_place(request):
         try:
             name = request.POST['name']
             description = request.POST['description']
-            places = int(request.POST['places'])
+            from_date = request.POST['from_date']
+            to_date = request.POST['to_date']
             image = request.FILES['image']
 
-            place_obj = Place(author=_login, name=name,description=description, image=image, places=places)
+            place_obj = Place(author=_login, name=name, description=description, from_date=from_date, to_date=to_date, image=image)
             place_obj.save()
             return redirect('/')
         except Exception as ex:

@@ -5,8 +5,9 @@ class Place(models.Model):
     author = models.CharField(max_length=150)
     name = models.CharField(max_length=150)
     description = models.TextField()
+    from_date = models.DateField()
+    to_date = models.DateField()
     image = models.ImageField(upload_to='images')
-    places = models.IntegerField(default=100)
 
     def __str__(self):
         return f"Place-{self.id} - "+self.name

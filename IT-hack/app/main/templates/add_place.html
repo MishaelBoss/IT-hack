@@ -13,9 +13,12 @@
                 <h1>Добавить</h1>
                 <div class="content-create-event">
                     <input type="file" id="fileUpload" name="image" accept="image/*"/>
-                    <input type="text" name="name" placeholder="Название">
-                    <input type="number" style="margin-left: 20px;" placeholder="Кол мест" name="places" min="1">
+                    <input type="text" name="name" placeholder="Название" minlength="2">
                     <textarea name="description" placeholder="Описание"></textarea>
+                    <label>Начало</label>
+                    <input type="date" name="from_date">
+                    <label>Конец</label>
+                    <input type="date" name="to_date">
                 </div>
                 <button>
                     Добавить
