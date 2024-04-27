@@ -1,60 +1,39 @@
 <!DOCTYPE html>
 {% load static %}
 <html lang="ru">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Регистрация</title>
-    </head>
-    <body>
-        <script src="{% static 'js/redirect.js' %}"></script>
-        <form class="form-reg" action="" method="post" enctype="multipart/form-data">
-            {% csrf_token %}
-
-            <div class="input">
-              <div class="text">
-                <label>Логин</label>
+  <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="{% static 'css/style.css' %}">
+      <link rel="stylesheet" href="{% static 'css/register.css' %}">
+      <link rel="stylesheet" href="{% static 'css/header.css' %}">
+      <title>Регистрация</title>
+  </head>
+  <body>
+    {% include 'header.html' %}
+    <script src="{% static 'js/redirect.js' %}"></script>
+    <section class="container" style="animation: 1s show ease;">
+      <div class="login-container">
+          <div class="circle circle-one"></div>
+          <div class="form-container">
+              <img src="https://raw.githubusercontent.com/hicodersofficial/glassmorphism-login-form/master/assets/illustration.png" alt="illustration" class="illustration" />
+              <h1 class="opacity" style="font-size: 2rem;">РЕГИСТРАЦИЯ</h1>
+              <form action="" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <input name="login" type="text" placeholder="ЛОГИН" />
+                <input type="text" placeholder="ИМЯ" name="first_name">
+                <input type="text" placeholder="ФАМИЛИЯ" name="last_name">
+                <input type="email" placeholder="ПОЧТА" name="email">
+                <input name="password" type="password" placeholder="ПАРОЛЬ" />
+                <button class="opacity" id="button">Регистрация</button>
+              </form>
+              <div class="register-forget opacity">
+                  <a href="/login">войти</a>
               </div>
-              <input type="text" placeholder="Логин" name="login">
-            </div>
-
-            <div class="input">
-                <div class="text">
-                  <label>Имя</label>
-                </div>
-                <input type="text" placeholder="Имя" name="first_name">
-            </div>
-
-            <div class="input">
-                <div class="text">
-                  <label>Фамилия</label>
-                </div>
-                <input type="text" placeholder="Фамилия" name="last_name">
-            </div>
-
-            <div class="input">
-                <div class="text">
-                  <label>Email</label>
-                </div>
-                <input type="email" placeholder="Email" name="email">
-            </div>
-
-            <div class="input">
-              <div class="text">
-                <label>Пароль</label>
-              </div>
-              <input type="password" name="password" placeholder="Пароль" class="psswrd"> 
-            </div>
-          
-            <div class="checkPassword">
-                <input style="width: 2rem;" type="checkbox" id="shwpsswrd"><p class="text-Korean">Посмотреть пароль</p>
-            </div>
-          
-            <button style="height: 10%;">
-              Регистрация
-            </button>
-            <a href="/login">Войти</a>
-        </form>
-        <script src="{% static 'js/password.js' %}"></script>
-    </body>
+          </div>
+          <div class="circle circle-two"></div>
+      </div>
+      <div class="theme-btn-container"></div>
+    </section>
+  </body>
 </html>

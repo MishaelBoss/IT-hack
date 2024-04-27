@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+        <link rel="stylesheet" href="{% static 'css/header.css' %}">
+        <script src="{% static 'js/redirect.js' %}"></script>
+        <title>Админ панель</title>
+    </head>
+    <body>
+        {% include 'header.html' %}
+        <div class="serch">
+            <form action="" method="get"><input type="text" name="query" placeholder="Введите запрос" value="{{query}}"><button><img src="/static/images/button-serch.png"></button></form><br>
+        </div>
+        <div style="display: flex; justify-content: center;">
+            <button onclick="redirect('/add_place')" class="btn-base" style="width: 250px; height: 50px;">Создать бронь</button>
+        </div>
+        <div class="content-base">
+            {% if places %}
+            {% for place, p, delta, delta_1 in places %}
+            <div id="id02" class="modal">
+                <span onclick="document.getElementById('id02').style.display='none'" class="close" title="Закрыть">&times;</span>
+                <div class="modal-content animate">
+                    <div>
+                      <h1 style="text-align: center; color: black; font-family: 'Rubik', sans-serif;">Вы хотете удалить?</h1>
+                    </div>
+                    <div style="background-color:#f1f1f1; border-bottom-right-radius: 20px; border-bottom-left-radius: 20px;">
+                        <div class="content-SHITSBERBANKCATYESYOUGOT">
+                            <h1 class="text-Rubik">Бронь: {{place.name}}</h1>
+                            <button onclick="redirect('/delete_place?place_id={{place.id}}')" class="btn-profile" style="background: rgba(8, 166, 82, 1); color: white;">
+                                Да, согласен
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="block-place" style="animation: 1s show ease;">
+                <h1 class="text-Rubik">{{place.name}}</h1>
+                <p class="text-Korean">{% if place.is_solo %}Командное{% else %} Одиночное{% endif %}</p>
+                <p class="text-Korean">{{place.from_date}}</p>
+                <p class="text-Korean">{{place.to_date}}</p>
+                <button class="btn-base" style="width: 150px; height: 50px; margin-left: 40%; border-color: black;" onclick="redirect('/place_more?id={{place.id}}')">
+                    Подробнее
+                </button>
+                <button class="btn-base" style="width: 150px; height: 50px; margin-left: 40%; border-color: black;" onclick="redirect('/place_members?id={{place.id}}')">
+                    Список участников
+                </button>
+                <button class="btn-base" style="width: 150px; height: 50px; margin-left: 40%; border-color: black;" onclick="redirect('/edit_place?place_id={{place.id}}')">
+                    Изменить
+                </button>
+                <button class="btn-base" style="width: 150px; height: 50px; margin-left: 40%; border-color: black;" onclick="document.getElementById('id02').style.display='block'">
+                    Удалить
+                </button>
+            </div>
+        {% endfor %}   
+        {% endif %}
+        </div>
+    </body>
+</html>

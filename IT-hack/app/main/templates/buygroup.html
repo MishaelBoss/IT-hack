@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+        <link rel="stylesheet" href="{% static 'css/register.css' %}">
+        <link rel="stylesheet" href="{% static 'css/header.css' %}">
+        <title>Забронировать</title>
+    </head>
+    <body>
+        {% include 'header.html' %}
+        <a class="btn-black" href="/"><img src="/static/images/left-arrow.png">Назад</a>
+        <section class="container">
+            <div class="login-container">
+                <div class="circle circle-one"></div>
+                <div class="form-container">
+                  <img src="https://raw.githubusercontent.com/hicodersofficial/glassmorphism-login-form/master/assets/illustration.png" alt="illustration" class="illustration" />
+                  <h1 class="opacity">Бронь для групп</h1>
+                  <h1 class="opacity">Место: {{ place_room.place_room_int }}</h1>
+                  <form action="" id="form"  method="post" enctype="multipart/form-data">
+                      {% csrf_token %}
+                      <div class="block-create-event" style="animation: 1s show ease;">
+                            <div class="content-create-event">
+                            <div>
+                                <label>С</label>
+                                <input type="date" name="from_date">
+                            </div>
+                            <div>
+                                <label>По</label>
+                                <input type="date" name="to_date">
+                            </div>
+                            <img src="/static/images/add.png" id="add_input" width="24px" height="auto">
+                            <div>
+                                <input type="text" placeholder="Логин пользователя" name="user1">
+                            </div>
+                            </div>
+                            <button type="submit" id="button">
+                                Забронировать
+                            </button>
+                      </div>
+                  </form>
+              </div>
+              <div class="circle circle-two"></div>
+            </div>
+            <div class="theme-btn-container"></div>
+            <script src="{% static 'js/main.js' %}"></script>
+        </section>
+    </body>
+</html>

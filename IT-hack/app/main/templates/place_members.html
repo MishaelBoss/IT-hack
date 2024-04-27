@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/header.css' %}">
+    <title>Список</title>
+</head>
+
+<body>
+    {% include 'header.html' %}
+    <script src="{% static 'js/redirect.js' %}"></script>
+    <a class="btn-black" href="/"><img src="/static/images/left-arrow.png">Назад</a>
+    <br><br><br>
+    <div id="outer">
+        <div id="inner" style="width: 80%; margin-left: auto; margin-right: auto;">
+            <table class="table">
+            <thead>
+                <tr>
+                    <th>Логин пользователя</th>
+                    <th>Время начала брони</th>
+                    <th>Время конца брони</th>
+                </tr>
+            </thead>
+            {% for tb in tbs %}
+            <tbody>
+                <tr>
+                    <td>{{ tb.user }}</td>
+                    <td>{{ tb.from_date }}</td>
+                    <td>{{ tb.to_date }}</td>
+                </tr>
+            </tbody>
+            {% endfor %}
+        </div>
+    </div>
+    <script src="{% static 'js/password.js' %}"></script>
+</body>
+
+</html>

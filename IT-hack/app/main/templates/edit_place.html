@@ -5,22 +5,22 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="{% static 'css/style.css' %}">
-        <link rel="stylesheet" href="{% static 'css/header.css' %}">
-        <title>Сделать бронь мест</title>
+        <title>Редактировать</title>
     </head>
     <body>
+        <a class="btn-black" href="/"><img src="/static/images/left-arrow.png">Назад</a>
         <form action="" method="post" enctype="multipart/form-data" style="display: flex; justify-content: center;">
             {% csrf_token %}
             <div class="block-create" style="animation: 1s show ease;">
-                <h1>Добавить</h1>
+                <h1>Редактировать</h1>
                 <div class="content-create">
                     <div class="start-input">
-                        <input type="text" style="width: 400px; margin-bottom: 15px;" class="price-input" name="name" placeholder="Название" minlength="2">
+                        <input type="text" style="width: 400px; margin-bottom: 15px;" class="price-input" name="name" placeholder="{{ place.name }}" minlength="2">
                         <select name="is_solo">
                             <option value="Team">Командное</option>
                             <option value="solo">Одиночное</option>
                         </select>
-                        <textarea class="more-input" style="margin-left: 20px;" name="description" placeholder="Описание" minlength="2"></textarea>
+                        <textarea class="more-input" style="margin-left: 20px;" name="description" placeholder="Описание" minlength="2">{{ place.description }}</textarea>
                     </div>
                     <div class="input-end" style="margin-left: 0;">
                         <input type="number" class="price-input" style="margin-bottom: 10px;" placeholder="Количество мест" name="number_of_seats" min="1">

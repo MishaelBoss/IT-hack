@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'css/style.css' %}"/>
+    <script src="{% static 'js/redirect.js' %}"></script>
+    <title>{{ place.name }}</title>
+  </head>
+  <body>
+    <a class="btn-black" href="/"><img src="/static/images/left-arrow.png">Назад</a>
+    <div style="display: flex;justify-content: center;align-items: flex-end;">
+        <div class="box" style="margin-top: 100px; margin-left: 30px; height: 500px; width: 900px; border-radius: 50px; box-shadow: 0 0 40px rgba(8,7,16,0.6);">
+            <img style="width: 100%;height: 100%;" src="/media/{{place.image}}">
+        </div>
+        <div class="box" style="margin-right: 30px; background: rgba(0,0,0, 0.5); width: 500px; height: 500px; display: grid; justify-items: center; justify-content: center; align-items: center; border-radius: 50px;  box-shadow: 0 0 40px rgba(8,7,16,0.6);">
+            <div class="content-text">
+                <h1 class="text-Rubik">Название: {{place.name}}</h1>
+                <br>
+                <p style="font-size: 1.5rem;" class="text-Korean">Дата начала: {{place.from_date}}</p>
+                <p style="font-size: 1.5rem;" class="text-Korean">Дата окончания: {{place.to_date}}</p>
+                <p style="font-size: 1.5rem;" class="text-Korean">Описание: {{place.description}}</p>
+                <p style="font-size: 1.4rem;" class="text-Korean">Количество мест: {{place.number_of_seats}}</p>
+                <br>
+                <p style="font-size: 1.2rem;" class="text-Korean">Способ бронирование:{% if place.is_solo %}Одиночное{% else %} Командное{% endif %}</p>
+                <p style="font-size: 1.2rem;" class="text-Korean">Организатор: @{{place.author}}</p>
+                <br>
+                <a href="mailto:{{email}}" style="color: black;">Написать организатору</a><br>
+            </div>
+        </div>
+    </div>
+    <div class="box-content-more">
+      {% if user.is_staff %}
+        <button onclick="redirect('/add_place_room')" class="btn-base" style="width: 30%; height: 15%;">
+          Добавить место
+        </button>
+      {% endif %}
+      <div class="content-base">
+        {% for place_room in place_rooms %}
+        <div class="card">
+          <div class="card__content">
+            <h2 class="card__title">Рабочие место: {{ place_room.place_room_int }}</h2>
+            <div style="display: flex;width: 100%; justify-content: center; flex-wrap: wrap;">
+              <button onclick="redirect('/buy?id={{place_room.id}}')" class="btn-base">
+                Забронировать
+              </button>            
+              {% if user.is_staff %}
+              <button onclick="redirect('/buygroup?id={{place_room.id}}')" class="btn-base">
+                Забронировать для группы
+              </button>
+              {% endif %}
+              {% if user.is_staff %}
+              <button onclick="redirect('/edit_place_room?place_room_id={{place_room.id}}')" class="btn-base" style="width: 50%; height: 40px;">
+                Редактировать
+              </button>
+              <button onclick="redirect('/delete_place_room?place_room_id={{place_room.id}}')" class="btn-base" style="width: 50%; height: 40px;">
+                Удалить
+              </button>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </body>
+</html>

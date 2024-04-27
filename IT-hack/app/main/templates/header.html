@@ -1,0 +1,19 @@
+{% if user.username %}
+<header>
+    <div class="start-block">
+        <button onclick="redirect('/')" style="width: 50%; height: 100%;"><img src="/static/images/icon.png"></button>
+    </div>
+    <div class="end-block">
+        <button onclick="redirect('/')">Главная</button>
+        {% if user.is_staff %}
+            <button onclick="redirect('/admin_panel')" style="width: 40%;">Админ панель</button>
+        {% endif %}
+        <button onclick="redirect('/profile')">Профиль</button>
+        <button onclick="document.getElementById('id01').style.display='block'">FAQ</button>
+        {% if user.is_staff %}
+            <button onclick="redirect('/read_faqs')" style="margin-left: 0; width: 15%; display: grid; justify-items: center; align-items: center;"><img style="width: 40%;" src="/static/images/bell.png"></button>
+        {% endif %}
+        <button onclick="redirect('/login')">Войти</button>
+    </div>
+</header>
+{% endif %}

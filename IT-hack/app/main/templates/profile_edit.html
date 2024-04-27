@@ -1,66 +1,37 @@
 <!DOCTYPE html>
 {% load static %}
 <html lang="ru">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Редактировать данные</title>
-    </head>
-    <body>
-        <script src="{% static 'js/redirect.js' %}"></script>
-        <form class="form-reg" action="" method="post" enctype="multipart/form-data">
-            {% csrf_token %}
-
-            <!-- <div class="input">
-              <div class="text">
-                <label>Логин</label>
-              </div>
-              <input type="text" placeholder="Логин" name="login">
-            </div> -->
-
-            <div class="input">
-                <div class="text">
-                  <label>Имя</label>
-                </div>
+  <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="{% static 'css/style.css' %}">
+      <link rel="stylesheet" href="{% static 'css/register.css' %}">
+      <link rel="stylesheet" href="{% static 'css/header.css' %}">
+      <title>Редактировать данные</title>
+  </head>
+  <body>
+    <script src="{% static 'js/redirect.js' %}"></script>
+    <a class="btn-black" href="/profile"><img src="/static/images/left-arrow.png">Назад</a>
+    <section class="container" style="animation: 1s show ease;">
+      <div class="login-container">
+          <div class="circle circle-one"></div>
+          <div class="form-container">
+              <img src="https://raw.githubusercontent.com/hicodersofficial/glassmorphism-login-form/master/assets/illustration.png" alt="illustration" class="illustration" />
+              <h1 class="opacity" style="font-size: 1.5rem;">Редактировать данные</h1>
+              <form action="" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <!-- <input name="login" type="text" placeholder="ЛОГИН" /> -->
                 <input type="text" placeholder="{{user.first_name}}" name="first_name">
-            </div>
-
-            <div class="input">
-                <div class="text">
-                  <label>Фамилия</label>
-                </div>
                 <input type="text" placeholder="{{user.last_name}}" name="last_name">
-            </div>
-
-            <div class="input">
-                <div class="text">
-                  <label>Email</label>
-                </div>
                 <input type="email" placeholder="{{user.email}}" name="email">
-            </div>
-
-            <div class="input">
-              <div class="text">
-                <label>Старый пароль</label>
-              </div>
-              <input type="password" name="old_password" placeholder="Старый Пароль" class="pssword"> 
-            </div>
-
-            <div class="input">
-                <div class="text">
-                  <label>Новый пароль</label>
-                </div>
-                <input type="password" name="new_password" placeholder="Новый Пароль" class="pssword"> 
-              </div>
-          
-            <div class="checkPassword">
-                <input style="width: 2rem;" type="checkbox" id="shwpsswrd"><p class="text-Korean">Посмотреть пароль</p>
-            </div>
-          
-            <button style="height: 10%;">
-                Изменить данные
-            </button>
-        </form>
-        <script src="{% static 'js/password.js' %}"></script>
-    </body>
+                <input type="password" name="old_password" placeholder="СТАРЫЙ ПАРОЛЬ" />
+                <input type="password" name="new_password" placeholder="НОВЫЙ ПАРОЛЬ" class="pssword"> 
+                <button class="opacity" id="button">Изменить</button>
+              </form>
+          </div>
+          <div class="circle circle-two"></div>
+      </div>
+      <div class="theme-btn-container"></div>
+    </section>
+  </body>
 </html>

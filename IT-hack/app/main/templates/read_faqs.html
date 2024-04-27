@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/header.css' %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Все FAQ</title>
+</head>
+<body>
+    {% include 'header.html' %}
+    <script src="{% static 'js/redirect.js' %}"></script>
+    {% if faqs %}
+    {% for faq in faqs %}
+        <div class="block-shop-item" style="animation: 1s show ease;">
+            <div style="width: 100%; display: flex; justify-content: center;">
+                <h1 class="text-Rubik">логин: {{faq.author}}</h1>
+                <h1 style="margin-left: 30px;" class="text-Rubik">почта: {{faq.email}}</h1>
+            </div>
+            <p class="text-Korean" style="font-size: 2rem;">{{faq.message}}</p>
+            <button class="btn-base" style="width: 150px; height: 50px; border-color: black;" onclick="redirect('/delete_faq?faq_id={{faq.id}}')">
+                Удалить
+            </button>
+        </div><br>
+    {% endfor %}
+    {% else %}
+    <div class="box" style="margin-top: 90px; animation: 1s show ease; height: 200px; width: 1000px; background: linear-gradient(90deg, rgb(191, 43, 43), rgb(145, 19, 19), rgb(146, 6, 6)); box-shadow: inset 0 0 6px rgba(0,0,0,0.3);">
+        <div class="content-start-box" style="display: flex;width: 100%;height: 100%;align-items: center;justify-content: center;">
+            <p style="top: -20px; font-weight: 150; font-size: 3.2rem; position: relative;">Ничего не нашел :(</p>
+            <video style="float: right; width: 20%;" src="/static/video/ErrorCat.webm" type="video/webm" loop="loop" autoplay muted></video>
+        </div>
+    </div>
+    {% endif %}
+</body>
+</html>
