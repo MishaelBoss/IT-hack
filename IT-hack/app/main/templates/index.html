@@ -18,28 +18,38 @@
         <div class="content-base">
             {% if places %}
             {% for place, p, delta, delta_1 in places %}
-            <div class="card">
-                <div class="card__content">
-                  <img
-                    class="card__image"
-                    src="/media/{{place.image}}"
-                  />
-                  <h2 class="card__title">{{ place.name }}</h2>
-                  <p class="card__description">{% if place.is_solo %}Одиночное{% else %} Командное{% endif %}</p>
-                  <p class="card__description">{% if delta_1 > 0 %} до начала осталось {{ delta_1 }} дней {%else%} мероприятие началось {%endif%}</p>
-                  <p class="card__description">Количество мест: {{place.number_of_seats}}</p>
-                  <div style="display: flex;width: 100%;">
-                      <button onclick="redirect('/place_more?id={{place.id}}')" class="btn-base">
-                          Подробнее
-                      </button>
-                      {% if user.is_staff %}
-                      <button onclick="redirect('/place_members?id={{place.id}}')" class="btn-base">
-                          Участники
-                      </button>
-                      {% endif %}
-                  </div>
+            <div class="container">
+                <div class="box_ticet">
+                    <h2 class="name">{{ place.name }}</h2>
+                    <h2 class="name">Мест: {{place.number_of_seats}}</h2>
+                    <div>
+                        <a href="/place_more?id={{place.id}}" class="buy" style="left: 0;">Подробнее</a>
+                        <a href="/place_members?id={{place.id}}" class="buy">Участники</a>
+                    </div>
+                    <div class="circle"></div>
+                    <img class="product_ticet" src="/media/{{place.image}}"/>
                 </div>
-              </div>
+                <div class="box_ticet">
+                    <h2 class="name">{{ place.name }}</h2>
+                    <h2 class="name">Мест: {{place.number_of_seats}}</h2>
+                    <div>
+                        <a href="/place_more?id={{place.id}}" class="buy" style="left: 0;">Подробнее</a>
+                        <a href="/place_members?id={{place.id}}" class="buy">Участники</a>
+                    </div>
+                    <div class="circle"></div>
+                    <img class="product_ticet" src="/media/{{place.image}}"/>
+                </div>
+                <div class="box_ticet">
+                    <h2 class="name">{{ place.name }}</h2>
+                    <h2 class="name">Мест: {{place.number_of_seats}}</h2>
+                    <div>
+                        <a href="/place_more?id={{place.id}}" class="buy" style="left: 0;">Подробнее</a>
+                        <a href="/place_members?id={{place.id}}" class="buy">Участники</a>
+                    </div>
+                    <div class="circle"></div>
+                    <img class="product_ticet" src="/media/{{place.image}}"/>
+                </div>
+            </div>
             {% endfor %}
             {% else %}
             <div class="box" style="margin-top: 90px; animation: 1s show ease; height: 200px; width: 1000px; background: linear-gradient(90deg, rgb(191, 43, 43), rgb(145, 19, 19), rgb(146, 6, 6)); box-shadow: inset 0 0 6px rgba(0,0,0,0.3);">
@@ -50,5 +60,6 @@
             </div>
             {% endif %}
         </div>
+        <script src="/static/js/ticet.js"></script>
     </body>
 </html>

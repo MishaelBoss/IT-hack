@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,900;1,900&display=swap');
 
 *{
   margin: 0;
@@ -597,4 +598,142 @@ input[type="file"]::file-selector-button:hover {
 
 .content-text h1{
   font-family: "Fira Sans", sans-serif;
+}
+
+.container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 1200px;
+  transform-style: preserve-3d;
+}
+
+.container .box_ticet {
+  position: relative;
+  width: 300px;
+  height: 400px;
+  margin: 40px;
+  background: var(--box-bg);
+  border-radius: 20px;
+  transform-style: preserve-3d;
+}
+
+.container .box_ticet::before {
+  content: 'TICET';
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  font-size: 6em;
+  font-weight: 900;
+  color: var(--card-bg-text);
+  font-style: italic;
+  opacity: 0;  
+  transition: 0.5s;
+}
+
+.container .box_ticet:hover::after,
+.container .box_ticet:hover::before {
+  opacity: 0.04;
+}
+
+.container .box_ticet .name {
+  text-align: center;
+  color: var(--name-color);
+  width: 40%;
+  transform-style: preserve-3d;
+  transform: translate3d(0,0,75px);
+  transition: 0.5s;
+  opacity: 0;
+  z-index: 10;
+}
+
+.container .box_ticet:hover .name {
+  top: 40px;
+  opacity: 1;
+}
+
+.container .box_ticet .buy {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform-style: preserve-3d;
+  transform: translate3d(0,0,75px);
+  color: #fff;
+  background: #333;
+  padding: 10px 25px;
+  border-radius: 30px;
+  text-decoration: none;
+  transition: 0.5s;
+  opacity: 0;
+  z-index: 10;
+  font-family: 'Poppins', sans-serif;
+}
+
+.container .box_ticet:hover .buy {
+  /*bottom: 30px;*/
+  opacity: 1;
+}
+
+.container .box_ticet .circle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  transition: 0.5s;
+  background: #ffffff;
+  transform-style: preserve-3d;
+  z-index: 10;
+  opacity: 1;
+  transform: translate3d(-50%, -50%, 0px);
+} 
+
+.container .box_ticet:hover .circle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  transition: 0.5s;
+  background: #ffffff;
+  transform-style: preserve-3d;
+  z-index: 10;
+  opacity: 1;
+  transform: translate3d(-50%, -50%, 0px);
+} 
+
+.container .box_ticet .product_ticet {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  max-width: 300px;
+  transition: 0.5s;
+  z-index: 12;
+  transition: 0.5s;
+  transform-style: preserve-3d;
+  transform: translate3d( -50%, -50%, 0px) rotate(-15deg);
+  border-radius: 25px;
+}
+
+.container .box_ticet:hover .product {
+  transform: translate3d( -50%, -50%, 100px) rotate(-15deg);
+}
+
+.container .box_ticet:nth-child(1) .circle,
+.container .box_ticet:nth-child(1) .buy {
+  background: #9bdc28;
+}
+
+.container .box_ticet:nth-child(2) .circle,
+.container .box_ticet:nth-child(2) .buy {
+  background: #1DA3C3;
+}
+
+.container .box_ticet:nth-child(3) .circle,
+.container .box_ticet:nth-child(3) .buy {
+  background: #eb0e2f;
 }
