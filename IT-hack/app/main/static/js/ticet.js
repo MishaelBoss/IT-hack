@@ -17,6 +17,6 @@ this.updateInitialPosition()}static isSettingTrue(t)
 VanillaTilt.init(document.querySelectorAll(".box_ticet"), {
     max: 15,
     speed: 300,
-easing: "cubic-bezier(.03,.98,.52,.99)",
-scale: 1.05,
+    easing: "cubic-bezier(.03,.98,.52,.99)",
+    scale: 1.05,
 });
